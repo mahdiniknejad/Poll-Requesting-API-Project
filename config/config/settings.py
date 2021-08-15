@@ -40,7 +40,7 @@ INSTALLED_APPS = [
 
     # Developments Applications
     'main.apps.MainConfig',
-    'eaccount.apps.EaccountConfig',
+    'eaccounts.apps.EaccountsConfig',
 
     # API Applications
     'rest_framework',
@@ -110,9 +110,9 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/3.2/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'fa-ir'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Asia/Tehran'
 
 USE_I18N = True
 
@@ -130,3 +130,6 @@ STATIC_URL = '/static/'
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = BASE_DIR / 'cdn' / 'media_root'
