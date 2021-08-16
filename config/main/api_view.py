@@ -1,7 +1,4 @@
-# from rest_framework.views import APIView
-# from rest_framework.response import Response
-from rest_framework.generics import ListAPIView
-from rest_framework import status
+from rest_framework.generics import ListAPIView, RetrieveAPIView, CreateAPIView
 from .models import Poll
 from .serializers import PollSerializer
 
@@ -11,13 +8,11 @@ class PollListView(ListAPIView):
     queryset = Poll.objects.all()
 
 
-# class PollAPIView(APIView):
-#     # serializer_class = PollSerializer
+class PollObjectView(RetrieveAPIView):
+    serializer_class = PollSerializer
+    queryset = Poll.objects.all()
+    lookup_field = "rand_title"
 
-#     def get(self, request):
-#         _data = Poll.objects.all()
-#         serialized_data = PollSerializer(instance=_data, many=True)
-#         return Response(serialized_data.data, status.HTTP_200_OK)
 
-#     def post(self):
-#         pass
+class PollCreateView(CreateAPIView):
+    serializer_class = PollSerializer
