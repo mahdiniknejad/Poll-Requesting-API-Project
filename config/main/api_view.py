@@ -1,6 +1,12 @@
-from rest_framework.generics import ListAPIView, RetrieveAPIView, CreateAPIView
 from .models import Poll
 from .serializers import PollSerializer
+from rest_framework.generics import (
+    ListAPIView,
+    RetrieveAPIView,
+    CreateAPIView,
+    DestroyAPIView,
+    UpdateAPIView,
+)
 
 
 class PollListView(ListAPIView):
@@ -8,7 +14,7 @@ class PollListView(ListAPIView):
     queryset = Poll.objects.all()
 
 
-class PollObjectView(RetrieveAPIView):
+class PollRetrieveView(RetrieveAPIView):
     serializer_class = PollSerializer
     queryset = Poll.objects.all()
     lookup_field = "rand_title"
@@ -16,3 +22,14 @@ class PollObjectView(RetrieveAPIView):
 
 class PollCreateView(CreateAPIView):
     serializer_class = PollSerializer
+
+
+class PollDeleteView(DestroyAPIView):
+    queryset = Poll.objects.all()
+    lookup_field = "rand_title"
+
+
+class PollUpdateView(UpdateAPIView):
+    serializer_class = PollSerializer
+    queryset = Poll.objects.all()
+    lookup_field = "rand_title"

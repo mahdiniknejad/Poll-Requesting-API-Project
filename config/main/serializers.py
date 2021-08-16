@@ -1,4 +1,3 @@
-from django.db.models import fields
 from rest_framework import serializers
 from .models import Poll, Responde
 
@@ -40,5 +39,15 @@ class PollSerializer(serializers.ModelSerializer):
 
         for responde in validated_data.get('post_respondes'):
             Responde.objects.create(
-                poll=poll, title=validated_data.get('title'))
+                poll=poll, title=responde['title'])
         return poll
+
+    def update(self, instance, validated_data):
+
+        for poll_respond in Responde.objects.filter(poll=instance):
+            poll_respond.delete()
+
+        for responde in validated_data.get('post_respondes'):
+            Responde.objects.create(poll=instance, title=responde['title'])
+
+        return super().update(instance, validated_data)
